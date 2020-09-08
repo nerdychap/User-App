@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import Loader from './components/Loader';
 import ErrorBoundary from './components/ErrorBoundary';
 import Homepage from './pages/Homepage';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import FullProfile from './pages/FullProfile';
 
 export const UsersContext = createContext([]);
@@ -37,6 +37,9 @@ function App() {
             <Switch>
               <Route path="/users/:userId" render={(props) => <FullProfile {...props} />} />
               <Route path="/users" render={() => <Homepage />} />
+              <Route path="/">
+                <Redirect to="/users" />
+              </Route>
             </Switch>
           </Router>
 
