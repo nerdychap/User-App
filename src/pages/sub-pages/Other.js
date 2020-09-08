@@ -1,8 +1,9 @@
 import React from 'react';
-
+import moment from 'moment'
 const Other = ({ user }) => {
     const { login: { username, password }, registered } = user;
-    const registeredDate = JSON.stringify(new Date(registered.date));
+    const registeredDate = moment(registered.date.slice(0, 10)).format("D MMM yyy");
+
     return (
         <article>
             <div>

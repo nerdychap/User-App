@@ -1,8 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 
 const Personal = ({ user }) => {
     const { dob, gender, location: { city, country, state, street }, name: { title, first, last }, nat } = user;
-    const dateOfBirth = JSON.stringify(new Date(dob.date));
+    const dateOfBirth = moment(dob.date.slice(0, 10)).format("D MMM yyy");
     return (
         <article>
             <div>
