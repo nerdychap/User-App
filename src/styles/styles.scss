@@ -52,3 +52,9 @@ section{
         box-shadow: 0 0 10px grey;
     }
 }
+#loader{
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,9 +1,10 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, lazy, Suspense } from 'react';
 import Loader from './components/Loader';
 import ErrorBoundary from './components/ErrorBoundary';
 import Homepage from './pages/Homepage';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
-import FullProfile from './pages/FullProfile';
+
+const FullProfile = lazy(() => import('./pages/FullProfile'));
 
 export const UsersContext = createContext([]);
 
@@ -32,17 +33,18 @@ function App() {
     <ErrorBoundary>
       <UsersContext.Provider value={users}>
         <>
-          <Router>
-            <Link to="/users" className="btn btn-dark btn-block text-uppercase mt-2 mb-2 mx-0" >Home</Link>
-            <Switch>
-              <Route path="/users/:userId" render={(props) => <FullProfile {...props} />} />
-              <Route path="/users" render={() => <Homepage />} />
-              <Route path="/">
-                <Redirect to="/users" />
-              </Route>
-            </Switch>
-          </Router>
-
+          <Suspense fallback={<Loader />}>
+            <Router>
+              <Link to="/users" className="btn btn-dark btn-block text-uppercase mt-2 mb-2 mx-0" >Home</Link>
+              <Switch>
+                <Route path="/users/:userId" render={(props) => <FullProfile {...props} />} />
+                <Route path="/users" render={() => <Homepage />} />
+                <Route path="/">
+                  <Redirect to="/users" />
+                </Route>
+              </Switch>
+            </Router>
+          </Suspense>
         </>
       </UsersContext.Provider>
     </ErrorBoundary>
