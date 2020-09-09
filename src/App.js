@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, lazy, Suspense } from 'react
 import Loader from './components/Loader';
 import ErrorBoundary from './components/ErrorBoundary';
 import Homepage from './pages/Homepage';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, HashRouter, Switch, Route, Link } from 'react-router-dom';
 
 const FullProfile = lazy(() => import('./pages/FullProfile'));
 
