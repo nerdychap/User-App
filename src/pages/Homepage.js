@@ -6,7 +6,7 @@ const Homepage = () => {
     const users = useContext(UsersContext);
     const userList = users.map((user, ind) => {
         return (<div id="user-link" key={`${user.phone}`}>
-            <Link to={`/users/${ind + 1}`}><User user={user} /></Link>
+            <Link to={`/${ind + 1}`}><User user={user} /></Link>
         </div>);
     })
     useEffect(() => {

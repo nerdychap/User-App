@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, lazy, Suspense } from 'react
 import Loader from './components/Loader';
 import ErrorBoundary from './components/ErrorBoundary';
 import Homepage from './pages/Homepage';
-import { BrowserRouter as Router, HashRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const FullProfile = lazy(() => import('./pages/FullProfile'));
 
@@ -35,11 +35,11 @@ function App() {
         <>
           <Suspense fallback={<Loader />}>
             <Router>
-              <Link to="/users" className="btn btn-dark btn-block text-uppercase mt-2 mb-2 mx-0" >Home</Link>
+              <Link to="/" className="btn btn-dark btn-block text-uppercase mt-2 mb-2 mx-0" >Home</Link>
               <Switch>
-                <Route path="/users/:userId" render={(props) => <FullProfile {...props} />} />
-                <Route path="/users" render={() => <Homepage />} />
+                <Route path="/:userId" render={(props) => <FullProfile {...props} />} />
                 <Route path="/" render={() => <Homepage />} />
+                {/* <Route path="/" render={() => <Homepage />} /> */}
               </Switch>
             </Router>
           </Suspense>

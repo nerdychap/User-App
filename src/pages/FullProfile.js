@@ -27,7 +27,7 @@ const FullProfile = () => {
             </div>
             <TabLinks url={url} />
             <Switch>
-                <Route path={`/users/:userId/:tab`} render={() => <Tab user={user} />} />
+                <Route path={`/:userId/:tab`} render={() => <Tab user={user} />} />
             </Switch>
         </div>
     )
